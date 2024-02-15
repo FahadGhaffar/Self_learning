@@ -5,7 +5,9 @@ const Header =  () => {
 
 return (
 
-    <h1>hello world</h1>
+    <header>
+    <h1 className="mt-4 p5 bg-primary text-white rounded">Header</h1>
+    </header>
 );
 
 }

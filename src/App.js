@@ -1,5 +1,8 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import Header from './header';
+import Footer from './footer';
+import Content from './content';
+import Employee from './Exployee';
 import './App.css';
 
 function App() {
@@ -20,6 +23,8 @@ function App() {
         </a>
       </header> */}
       <Header/>
+      <Employee/>
+      <Footer/>
     </div>
   );
 }
