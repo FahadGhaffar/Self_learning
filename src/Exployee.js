@@ -7,7 +7,7 @@ import male from './images/maleProfile.jpg';
 const Employee = () => {
 
 
-
+  const [selectedTeam, setTeam] = useState("TeamB")
   const [employee, setemployee] = useState([{
     id: 1,
     fullName: "Bob Jones",
@@ -96,13 +96,24 @@ const Employee = () => {
 
     <main className="container">
       <div className="row justify-content-center mt-3 mb-3">
+        <div className="col-6">
+          <select className="form-select form-select-lg" value={selectedTeam} onChange={handleTeamSelectionChange}>
+            <option value='TeamA'>TeamA</option>
+            <option value='TeamB'>TeamB</option>
+            <option value='TeamC'>TeamC</option>
+            <option value='TeamD'>TeamD</option>
+
+          </select>
+        </div></div>
+      <div className="row justify-content-center mt-3 mb-3">
         <div className="col-8">
           <div className="card-collection">
             {
               employee.map((employee) => (
 
-                <div className="card">
-                  <img src={female} className="card-img-top" />
+                <div className="card m-2" style={{ cursor: "pointer" }}>
+                  {(employee.gender === "male") ? <img src={male} className="card-img-top" />
+                    : <img src={female} className="card-img-top" />}
                   <div className="card-body">
                     <h5 className="card-title"> Full Name: {employee.fullName}</h5>
                     <p className="card-text"> Description: {employee.designation}</p>
