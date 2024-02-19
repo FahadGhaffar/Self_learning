@@ -100,12 +100,16 @@ const Employee = () => {
   }
 
   function handleEmployeeCardClick(event){
+   console.log(parseInt(event.target.id))
+   console.log(event.currentTarget.id)
+
+
     const transformedEmployees = employee.map((employee) => employee.id === parseInt(event.currentTarget.id)
     ? (employee.teamName === selectedTeam) ? { ...employee,teamName:''}: {...employee, teamName:selectedTeam}
     :employee);
 
     setemployee(transformedEmployees);
-    console.log(transformedEmployees)
+    console.log(transformedEmployees);
 
   }
   return (
