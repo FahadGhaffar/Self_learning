@@ -92,6 +92,22 @@ const Employee = () => {
     gender: "male",
     teamName: "TeamD"
   }])
+
+
+  function handleTeamSelectionChange(event){
+    console.log(event.target.value)
+    setTeam(event.target.value);
+  }
+
+  function handleEmployeeCardClick(event){
+    const transformedEmployees = employee.map((employee) => employee.id === parseInt(event.currentTarget.id)
+    ? (employee.teamName === selectedTeam) ? { ...employee,teamName:''}: {...employee, teamName:selectedTeam}
+    :employee);
+
+    setemployee(transformedEmployees);
+    console.log(transformedEmployees)
+
+  }
   return (
 
     <main className="container">
@@ -111,7 +127,7 @@ const Employee = () => {
             {
               employee.map((employee) => (
 
-                <div className="card m-2" style={{ cursor: "pointer" }}>
+                <div className={(employee.teamName === selectedTeam ? 'card m-2 standout' : 'card m-2')} style={{ cursor: "pointer" }} onClick={handleEmployeeCardClick}>
                   {(employee.gender === "male") ? <img src={male} className="card-img-top" />
                     : <img src={female} className="card-img-top" />}
                   <div className="card-body">
