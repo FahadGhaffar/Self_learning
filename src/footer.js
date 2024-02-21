@@ -1,13 +1,18 @@
 
 
 
-const Footer =  () => {
-
+const Footer = () => {
+    var date = new Date();
     return (
-    
-        <h1>Footer</h1>
+        <footer className="container">
+            <div className="row justify-content-center mt-3 mb-4">
+                <div className="col-8">
+                    <h5>Team Member  {date.getFullYear()}</h5>
+                </div>
+            </div>
+        </footer>
     );
-    
-    }
-    
-    export default Footer;
+
+}
+
+export default Footer;

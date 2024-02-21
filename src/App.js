@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from './header';
 import Footer from './footer';
 import Content from './content';
@@ -8,8 +8,8 @@ import './App.css';
 
 function App() {
 
-  const [selectedTeam, setTeam] = useState("TeamB")
-  const [employee, setemployee] = useState([{
+  const [selectedTeam, setTeam] = useState(JSON.parse(localStorage.getItem('selectedTeam')) || "TeamB")
+  const [employee, setemployee] = useState(JSON.parse(localStorage.getItem('employeeList')) || [{
     id: 1,
     fullName: "Bob Jones",
     designation: "JavaScript Developer",
@@ -95,23 +95,38 @@ function App() {
   }])
 
 
-  function handleTeamSelectionChange(event){
+  function handleTeamSelectionChange(event) {
     console.log(event.target.value)
     setTeam(event.target.value);
   }
 
-  function handleEmployeeCardClick(event){
- 
+  function handleEmployeeCardClick(event) {
+
 
 
     const transformedEmployees = employee.map((employee) => employee.id === parseInt(event.currentTarget.id)
-    ? (employee.teamName === selectedTeam) ? { ...employee,teamName:''}: {...employee, teamName:selectedTeam}
-    :employee);
+      ? (employee.teamName === selectedTeam) ? { ...employee, teamName: '' } : { ...employee, teamName: selectedTeam }
+      : employee);
 
     setemployee(transformedEmployees);
 
 
+
+
   }
+
+  useEffect(() => {
+
+    localStorage.setItem('employeeList', JSON.stringify(employee))
+
+  }, [employee])
+
+
+  useEffect(() => {
+
+    localStorage.setItem('selectedTeam', JSON.stringify(selectedTeam))
+
+  }, [selectedTeam])
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -128,15 +143,15 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <Header  selectedTeam={selectedTeam}
-               teamMemberCount={employee.filter((employee) => employee.teamName === selectedTeam).length}
+      <Header selectedTeam={selectedTeam}
+        teamMemberCount={employee.filter((employee) => employee.teamName === selectedTeam).length}
       />
-      <Employee   employee={employee}
-                  selectedTeam = {selectedTeam}
-                  handleTeamSelectionChange ={handleTeamSelectionChange}
-                  handleEmployeeCardClick ={handleEmployeeCardClick}
-       />
-      <Footer/>
+      <Employee employee={employee}
+        selectedTeam={selectedTeam}
+        handleTeamSelectionChange={handleTeamSelectionChange}
+        handleEmployeeCardClick={handleEmployeeCardClick}
+      />
+      <Footer />
     </div>
   );
 }
