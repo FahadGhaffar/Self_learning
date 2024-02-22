@@ -4,6 +4,8 @@ import Header from './header';
 import Footer from './footer';
 import Content from './content';
 import Employee from './Exployee';
+import GroupedTeamMembers from "./GroupedTeamMembers";
+import { BrowserRouter as Router,Route,Routes } from "react-router-dom";
 import './App.css';
 
 function App() {
@@ -128,31 +130,30 @@ function App() {
 
   }, [selectedTeam])
   return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+  
+
+      <Router>
       <Header selectedTeam={selectedTeam}
         teamMemberCount={employee.filter((employee) => employee.teamName === selectedTeam).length}
       />
-      <Employee employee={employee}
-        selectedTeam={selectedTeam}
-        handleTeamSelectionChange={handleTeamSelectionChange}
-        handleEmployeeCardClick={handleEmployeeCardClick}
-      />
+      <Routes>
+        <Route path="/"  element={ <Employee employee={employee}
+                                  selectedTeam={selectedTeam}
+                                  handleTeamSelectionChange={handleTeamSelectionChange}
+                                  handleEmployeeCardClick={handleEmployeeCardClick}
+                                  />}
+       ></Route>
+     
+       <Route path="/groupedteammembers/" element={ <GroupedTeamMembers/>}
+
+       
+       ></Route>
+ 
+
+      </Routes>
       <Footer />
-    </div>
+      </Router>
+
   );
 }
 
