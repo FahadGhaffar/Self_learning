@@ -1,7 +1,7 @@
 
+import { useState } from "react";
 
-
-const GroupedTeamMembers =() => {
+const GroupedTeamMembers =({employee, selectedTeam,setTeam}) => {
 
 
     return(
