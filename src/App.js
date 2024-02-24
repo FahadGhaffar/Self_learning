@@ -5,7 +5,7 @@ import Footer from './footer';
 import Content from './content';
 import Employee from './Exployee';
 import GroupedTeamMembers from "./GroupedTeamMembers";
-import { BrowserRouter as Router,Route,Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Nav from "./nav";
 import NotFound from "./NotFound";
 import './App.css';
@@ -132,34 +132,34 @@ function App() {
 
   }, [selectedTeam])
   return (
-  
 
-      <Router>
-        <Nav/>
+
+    <Router>
+      <Nav />
       <Header selectedTeam={selectedTeam}
         teamMemberCount={employee.filter((employee) => employee.teamName === selectedTeam).length}
       />
       <Routes>
-        <Route path="/"  element={ <Employee employee={employee}
-                                  selectedTeam={selectedTeam}
-                                  handleTeamSelectionChange={handleTeamSelectionChange}
-                                  handleEmployeeCardClick={handleEmployeeCardClick}
-                                  />}
-       ></Route>
-     
-       <Route path="/groupedteammembers/" element={ <GroupedTeamMembers  employee={employee}
-                                                                          selectedTeam={selectedTeam}
-                                                                          setTeam={setTeam}
-       />}
+        <Route path="/" element={<Employee employee={employee}
+          selectedTeam={selectedTeam}
+          handleTeamSelectionChange={handleTeamSelectionChange}
+          handleEmployeeCardClick={handleEmployeeCardClick}
+        />}
+        ></Route>
 
-       
-       ></Route>
-       <Route  path="*" element={ <NotFound/>}></Route>
- 
+        <Route path="/groupedteammembers/" element={<GroupedTeamMembers employee={employee}
+          selectedTeam={selectedTeam}
+          setTeam={setTeam}
+        />}
+
+
+        ></Route>
+        <Route path="*" element={<NotFound />}></Route>
+
 
       </Routes>
       <Footer />
-      </Router>
+    </Router>
 
   );
 }
