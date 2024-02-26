@@ -32,7 +32,17 @@ const GroupedTeamMembers = ({ employee, selectedTeam, setTeam }) => {
     return (
 
         <main className="container">
+            {
+                groupedEmployees.map((item) => {
 
+                    return (
+                        <div key={item.item}>
+
+                        </div>
+                    )
+                })
+
+            }
         </main>
     );
 
