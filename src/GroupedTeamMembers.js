@@ -1,38 +1,34 @@
 
 import { useState } from "react";
 
-const GroupedTeamMembers = ({ employee, selectedTeam, setTeam }) => {
+
+const GroupedTeamMembers =({employee, selectedTeam,setTeam}) => {
+   const [groupEmployees, setGroupData] =useState(groupTeamMember());
 
 
-    const [groupedEmployees, setGroupedData] = useState(groupTeamMembers());
+   function groupTeamMember(){
+    var teams=[];
 
-    function groupTeamMembers() {
+    var teamAMembers = employee.filter((employee) =>  employee.teamName === "TeamA");
+    var teamA = {team:"TeamA",members:teamAMembers,collapsed : selectedTeam === "TeamA" ? false:true}
+    teams.push(teamA);
 
-        var team = [];
+    var teamBMembers = employee.filter((employee) =>  employee.teamName === "TeamB");
+    var teamB = {team:"TeamB",members:teamBMembers,collapsed : selectedTeam === "TeamB" ? false:true}
+    teams.push(teamB);
 
-        var teamAMembers = employee.filter((employee) => employee.teamName === 'TeamA')
-        var teamA = { team: 'TeamA', members: teamAMembers, collapsed: selectedTeam === 'TeamB' ? false : true }
-        team.push(teamA)
+    var teaCMembers = employee.filter((employee) =>  employee.teamName === "TeamC");
+    var teamC = {team:"TeamC",members:teaCMembers,collapsed : selectedTeam === "TeamD" ? false:true}
+    teams.push(teamC);
 
-        var teamBMembers = employee.filter((employee) => employee.teamName === 'TeamB')
-        var teamB = { team: 'TeamB', members: teamBMembers, collapsed: selectedTeam === 'TeamB' ? false : true }
-        team.push(teamB)
-
-        var teamCMembers = employee.filter((employee) => employee.teamName === 'TeamC')
-        var teamC = { team: 'TeamC', members: teamCMembers, collapsed: selectedTeam === 'TeamC' ? false : true }
-        team.push(teamC)
-
-        var teamDMembers = employee.filter((employee) => employee.teamName === 'TeamD')
-        var teamD = { team: 'TeamD', members: teamDMembers, collapsed: selectedTeam === 'TeamD' ? false : true }
-        team.push(teamD)
-
-        return team;
-    }
-
-    return (
+    var teamDMembers = employee.filter((employee) =>  employee.teamName === "TeamD");
+    var teamD = {team:"TeamD",members:teamDMembers,collapsed : selectedTeam === "TeamD" ? false:true}
+    teams.push(teamD);
+   }
+    return(
 
         <main className="container">
-            {
+          {
                 groupedEmployees.map((item) => {
 
                     return (
@@ -43,7 +39,7 @@ const GroupedTeamMembers = ({ employee, selectedTeam, setTeam }) => {
                 })
 
             }
-        </main>
+    </main>
     );
 
 
